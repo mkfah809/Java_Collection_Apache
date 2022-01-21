@@ -1,44 +1,48 @@
 package com.coderscampus.apachecommons.service;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 
 @Service
 public class FileService {
-
-
-	public Iterable<CSVRecord> readFile(String fileName) throws IOException {
-		Reader in = new FileReader(fileName);
-		Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
 	
-		burnHeaderLine(records);
-		
-		for (CSVRecord record : records) {
-			Integer.parseInt(record.get(0));
-			Boolean.parseBoolean(record.get(1));
-			Boolean.parseBoolean(record.get(2));
-			Boolean.parseBoolean(record.get(10));
-			Boolean.parseBoolean(record.get(11));
-			System.out.println(record.toString());
-		}
-		return records;
-	}
+	String fileName;
+	@Autowired
+	public FileService() {}
 
-	private void burnHeaderLine(Iterable<CSVRecord> records) {
-		for (CSVRecord recordBurnOut : records) {
-			recordBurnOut.get(0); recordBurnOut.get(1); recordBurnOut.get(2); 
-			recordBurnOut.get(3); recordBurnOut.get(4); recordBurnOut.get(5); 
-			recordBurnOut.get(6); recordBurnOut.get(7); recordBurnOut.get(8);
-			recordBurnOut.get(9); recordBurnOut.get(10);recordBurnOut.get(11);
-			break;
-		}
+	public List<String> readFile() throws IOException {
+		
+		return Files.readAllLines(Paths.get("data.txt"));
 	}
+	// System.out.println("readFile method " + records);
+
+//	private void burnHeaderLine(Iterable<CSVRecord> records) {
+//		for(int i=0; i <12; i++) {
+//			for (CSVRecord recordBurnOut : records) {
+//				System.out.print(recordBurnOut.get(i));
+//				System.out.print(recordBurnOut.get(1));
+//				System.out.print(recordBurnOut.get(2));
+//				System.out.print(recordBurnOut.get(3));
+//				System.out.print(recordBurnOut.get(4));
+//				System.out.print(recordBurnOut.get(5));
+//				System.out.print(recordBurnOut.get(6));
+//				System.out.print(recordBurnOut.get(7));
+//				System.out.print(recordBurnOut.get(8));
+//				System.out.print(recordBurnOut.get(9));
+//				System.out.print(recordBurnOut.get(10));
+//				System.out.println(recordBurnOut.get(11));
+//				break;
+//			}
+//			
+//		}
+//	}
 }
 
 //recipe.setCookingMinutes(Integer.parseInt(record.get(0)));

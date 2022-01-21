@@ -14,22 +14,11 @@ public class Recipe {
 	private Boolean vegan;
 	private Boolean vegetarian;
 
-//	public Recipe(String cookingMinutes, String dairyFree, String glutenFree, String instructios,
-//			String preparationMinutes, String pricePerServing, String readyInMinutes, String servings,
-//			String spoonacularScore, String title, String vegan, String vegetarian) {
-//		
-//		this.cookingMinutes = Integer.parseInt(cookingMinutes);
-//		this.dairyFree = Boolean.parseBoolean(dairyFree);
-//		this.glutenFree = Boolean.parseBoolean(glutenFree);
-//		this.instructions = instructios;
-//		this.preparationMinutes = Double.parseDouble(preparationMinutes);
-//		this.pricePerServing = Double.parseDouble(pricePerServing);
-//		this.servings = Integer.parseInt(servings);
-//		this.spoonacularScore = Double.parseDouble(spoonacularScore);
-//		this.title = title;
-//		this.vegan = Boolean.parseBoolean(vegan);
-//		this.vegetarian = Boolean.parseBoolean(vegetarian);
-//	}
+	public Recipe(String glutenFree, String vegan, String vegetarian) {
+		this.glutenFree = Boolean.parseBoolean(glutenFree);
+		this.vegan = Boolean.parseBoolean(vegan);
+		this.vegetarian = Boolean.parseBoolean(vegetarian);
+	}
 
 	public Integer getCookingMinutes() {
 		return cookingMinutes;
@@ -129,11 +118,7 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [cookingMinutes=" + cookingMinutes + ", dairyFree=" + dairyFree + ", glutenFree=" + glutenFree
-				+ ", instructions=" + instructions + ", preparationMinutes=" + preparationMinutes + ", pricePerServing="
-				+ pricePerServing + ", readyInMinutes=" + readyInMinutes + ", servings=" + servings
-				+ ", spoonacularScore=" + spoonacularScore + ", title=" + title + ", vegan=" + vegan + ", vegetarian="
-				+ vegetarian + "]";
+		return "Recipe [glutenFree=" + glutenFree + ", vegan=" + vegan + ", vegetarian=" + vegetarian + "]";
 	}
 
 }
