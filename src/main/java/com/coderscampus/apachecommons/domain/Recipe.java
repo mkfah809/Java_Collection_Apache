@@ -14,8 +14,20 @@ public class Recipe {
 	private Boolean vegan;
 	private Boolean vegetarian;
 
-	public Recipe(String glutenFree, String vegan, String vegetarian) {
-		this.glutenFree = Boolean.parseBoolean(glutenFree);
+	public Recipe(String cookingMinutes, String dairyFree, String glutenFree, String instructions,
+			String preparationMinutes, String privePerServing, String readyInMinutes, String servings,
+			String spoonacularScore, String title, String vegan, String vegetarian) {
+		
+		this.cookingMinutes = Integer.parseInt(cookingMinutes);
+		this.dairyFree = Boolean.parseBoolean(dairyFree);
+		this.glutenFree = Boolean.parseBoolean(spoonacularScore);
+		this.instructions = instructions;
+		this.preparationMinutes = Double.parseDouble(preparationMinutes);
+		this.pricePerServing = Double.parseDouble(spoonacularScore);
+		this.readyInMinutes = Integer.parseInt(readyInMinutes);
+		this.servings = Integer.parseInt(servings);
+		this.spoonacularScore = Double.parseDouble(spoonacularScore);
+		this.title = title;
 		this.vegan = Boolean.parseBoolean(vegan);
 		this.vegetarian = Boolean.parseBoolean(vegetarian);
 	}
@@ -114,11 +126,6 @@ public class Recipe {
 
 	public void setVegetarian(Boolean vegetarian) {
 		this.vegetarian = vegetarian;
-	}
-
-	@Override
-	public String toString() {
-		return "Recipe [glutenFree=" + glutenFree + ", vegan=" + vegan + ", vegetarian=" + vegetarian + "]";
 	}
 
 }

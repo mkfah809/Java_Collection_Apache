@@ -3,71 +3,52 @@ package com.coderscampus.apachecommons.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.csv.QuoteMode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.coderscampus.apachecommons.domain.Recipe;
 
 @Service
 public class FileService {
 
-	Recipe recipe;
+	private String cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing,
+			readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian;
 
-	public Iterable<CSVRecord> readFile(String fileName) throws IOException {
-
-		System.out.println("Entered readFile method");
+	public List<Recipe> readAllRecipes(String fileName) throws IOException {
 		Reader reader = new FileReader(fileName);
+		@SuppressWarnings({ "static-access", "deprecation" })
 		Iterable<CSVRecord> records = CSVFormat.RFC4180.newFormat(',').withIgnoreSurroundingSpaces().withQuote('"')
 				.withEscape('\\').withQuoteMode(QuoteMode.NONE).withFirstRecordAsHeader().parse(reader);
+		Recipe recipe = new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes,
+				pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
 
+		List<Recipe> recipes = new ArrayList<Recipe>();
 		for (CSVRecord record : records) {
-			Integer.parseInt(record.get(0));
-			Boolean.parseBoolean(record.get(1));
-			Boolean.parseBoolean(record.get(2));
-			record.get(3);
-			Double.parseDouble(record.get(4));
-			Double.parseDouble(record.get(5));
-			Integer.parseInt(record.get(6));
-			Integer.parseInt(record.get(7));
-			Double.parseDouble(record.get(8));
-			record.get(9);
-			Boolean.parseBoolean(record.get(10));
-			Boolean.parseBoolean(record.get(11));
-			System.out.println(record);
+			recipes.add(recipe);
 		}
-//			Integer.parseInt(record.get(0));
-//			Boolean.parseBoolean(record.get(1));
-//			Boolean.parseBoolean(record.get(2));
-//			record.get(3);
-//			Double.parseDouble(record.get(4));
-//			Double.parseDouble(record.get(5));
-//			Integer.parseInt(record.get(6));
-//			Integer.parseInt(record.get(7));
-//			Double.parseDouble(record.get(8));
-//			record.get(9);
-//			Boolean.parseBoolean(record.get(10));
-//			Boolean.parseBoolean(record.get(11));
-
-		// recipe.setCookingMinutes(Integer.parseInt(record.get(0)));
-//			recipe.setCookingMinutes(parseInt);
-//			recipe.setDairyFree(Boolean.parseBoolean(record.get(1)));
-//			recipe.setGlutenFree(Boolean.parseBoolean(record.get(2)));
-//			recipe.setInstructions(record.get(3));
-//			recipe.setPreparationMinutes(Double.parseDouble(record.get(4)));
-//			recipe.setPricePerServing(Double.parseDouble(record.get(5)));
-//			recipe.setReadyInMinutes(Integer.parseInt(record.get(6)));
-//			recipe.setServings(Integer.parseInt(record.get(7)));
-//			recipe.setSpoonacularScore(Double.parseDouble(record.get(8)));
-//			recipe.setTitle(record.get(9));
-//			recipe.setVegan(Boolean.parseBoolean(record.get(10)));
-//			recipe.setVegetarian(Boolean.parseBoolean(record.get(11)));
-
-	
-		return records;
-
+		return recipes;
 	}
+
+//	PUBLIC LIST<RECIPE> READGLUTENFREERECIPES(STRING FILENAME) THROWS IOEXCEPTION {
+//		// GRAB ALL RECIPES HERE IN THIS METHOD
+//		// THEN WE LOOP THROUGH ALL OF THE RECIPES AGAIN LOOKING UP FOR
+//		// GLUTENFREE.EQUAL(TRUE)
+//		// GLUTENFREERECIPES.ADD(RECIPE)
+//		LIST<RECIPE> GLUTENFREERECIPES = NEW ARRAYLIST<RECIPE>();
+//
+//		FOR (RECIPE RECIPE : RECIPES) {
+//			GLUTENFREERECIPES.ADD(RECIPE);
+//			IF (RECIPE.GETGLUTENFREE().EQUALS(TRUE)) {
+//			}
+//		}
+//		RETURN GLUTENFREERECIPES;
+//
+//	}
 
 }
