@@ -8,6 +8,7 @@ class Assignment9MinaFApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
