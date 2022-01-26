@@ -1,6 +1,7 @@
 package com.coderscampus.apachecommons.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +15,18 @@ import com.coderscampus.apachecommons.service.FileService;
 public class RecipeConroller {
 	@Autowired
 	private FileService fileServices;
-//	private String cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing,
-//			readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian;
-//
-//	@Autowired
-//	Recipe recipe() {
-//		return new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing,
-//				readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
-//	}
 
+	List<Recipe> recipes = new ArrayList<Recipe>();
+	
 	@GetMapping("/all-recipes")
 	public List<Recipe> displayAllRecipes() throws IOException {
-		return fileServices.readAllRecipes("data.txt");
+		return fileServices.readAllRecipes(recipes);
 	}
 
 	@GetMapping("/gluten-free")
 	public List<Recipe> displayGlutenFreeRecipes() throws IOException {
-		return null;
+		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
+		return fileServices.readGlutenFreeRecipes(readAllRecipes);
 	}
 
 	@GetMapping("/vegan")

@@ -1,5 +1,7 @@
 package com.coderscampus.apachecommons.domain;
 
+import java.math.BigDecimal;
+
 public class Recipe {
 	private Integer cookingMinutes;
 	private Boolean dairyFree;
@@ -17,19 +19,18 @@ public class Recipe {
 	public Recipe(String cookingMinutes, String dairyFree, String glutenFree, String instructions,
 			String preparationMinutes, String privePerServing, String readyInMinutes, String servings,
 			String spoonacularScore, String title, String vegan, String vegetarian) {
-		
-		this.cookingMinutes = Integer.parseInt(cookingMinutes);
 		this.dairyFree = Boolean.parseBoolean(dairyFree);
-		this.glutenFree = Boolean.parseBoolean(spoonacularScore);
+		this.glutenFree = Boolean.parseBoolean(glutenFree);
 		this.instructions = instructions;
-		this.preparationMinutes = Double.parseDouble(preparationMinutes);
-		this.pricePerServing = Double.parseDouble(spoonacularScore);
-		this.readyInMinutes = Integer.parseInt(readyInMinutes);
-		this.servings = Integer.parseInt(servings);
-		this.spoonacularScore = Double.parseDouble(spoonacularScore);
 		this.title = title;
 		this.vegan = Boolean.parseBoolean(vegan);
 		this.vegetarian = Boolean.parseBoolean(vegetarian);
+		this.cookingMinutes = Integer.parseInt(cookingMinutes);
+		this.preparationMinutes = Double.parseDouble(preparationMinutes);
+		this.pricePerServing = Double.parseDouble(privePerServing);
+		this.readyInMinutes = Integer.parseInt(readyInMinutes);
+		this.servings = Integer.parseInt(servings);
+		this.spoonacularScore = Double.parseDouble(spoonacularScore);
 	}
 
 	public Integer getCookingMinutes() {

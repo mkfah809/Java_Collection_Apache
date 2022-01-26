@@ -16,39 +16,33 @@ import com.coderscampus.apachecommons.domain.Recipe;
 
 @Service
 public class FileService {
+	// One method to read the file
+	// One method to get all recipes
 
-	private String cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes, pricePerServing,
-			readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian;
-
-	public List<Recipe> readAllRecipes(String fileName) throws IOException {
-		Reader reader = new FileReader(fileName);
+	public List<Recipe> readAllRecipes(List<Recipe> recipes) throws IOException {
+		Reader reader = new FileReader("data.txt");
 		@SuppressWarnings({ "static-access", "deprecation" })
 		Iterable<CSVRecord> records = CSVFormat.RFC4180.newFormat(',').withIgnoreSurroundingSpaces().withQuote('"')
 				.withEscape('\\').withQuoteMode(QuoteMode.NONE).withFirstRecordAsHeader().parse(reader);
-		Recipe recipe = new Recipe(cookingMinutes, dairyFree, glutenFree, instructions, preparationMinutes,
-				pricePerServing, readyInMinutes, servings, spoonacularScore, title, vegan, vegetarian);
 
-		List<Recipe> recipes = new ArrayList<Recipe>();
 		for (CSVRecord record : records) {
+
+			Recipe recipe = new Recipe(record.get(0), record.get(1), record.get(2), record.get(3), record.get(4),
+					record.get(5), record.get(6), record.get(7), record.get(8), record.get(9), record.get(10),
+					record.get(11));
 			recipes.add(recipe);
 		}
 		return recipes;
 	}
 
-//	PUBLIC LIST<RECIPE> READGLUTENFREERECIPES(STRING FILENAME) THROWS IOEXCEPTION {
-//		// GRAB ALL RECIPES HERE IN THIS METHOD
-//		// THEN WE LOOP THROUGH ALL OF THE RECIPES AGAIN LOOKING UP FOR
-//		// GLUTENFREE.EQUAL(TRUE)
-//		// GLUTENFREERECIPES.ADD(RECIPE)
-//		LIST<RECIPE> GLUTENFREERECIPES = NEW ARRAYLIST<RECIPE>();
-//
-//		FOR (RECIPE RECIPE : RECIPES) {
-//			GLUTENFREERECIPES.ADD(RECIPE);
-//			IF (RECIPE.GETGLUTENFREE().EQUALS(TRUE)) {
-//			}
-//		}
-//		RETURN GLUTENFREERECIPES;
-//
-//	}
+	public List<Recipe> readGlutenFreeRecipes(List<Recipe> recipes) throws IOException {
+		List<Recipe> glutenFreeRecipes = new ArrayList<Recipe>();
+		for (Recipe recipe : recipes) {
+			if (recipe.getGlutenFree().equals(true)) {
+				glutenFreeRecipes.add(recipe);
+			}
+		}
+		return glutenFreeRecipes;
+	}
 
 }
