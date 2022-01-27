@@ -44,5 +44,30 @@ public class FileService {
 		}
 		return glutenFreeRecipes;
 	}
-
+	
+	public List<Recipe> readVeganRecipes(List<Recipe> recipes) throws IOException {
+		List<Recipe> veganRecipes = new ArrayList<Recipe>();
+		for(Recipe recipe : recipes) {
+			if(recipe.getVegan().equals(true)) {
+				veganRecipes.add(recipe);
+			}
+		}
+		return veganRecipes;
+	}
+	
+	public List<Recipe> readVegetarianRecipes(List<Recipe> recipes) throws IOException {
+		List<Recipe> vegetarianRecipes = new ArrayList<Recipe>();
+		for(Recipe recipe : recipes) {
+			if(recipe.getVegetarian().equals(true)) {
+				vegetarianRecipes.add(recipe);
+			}
+		}
+		return vegetarianRecipes;
+	}
+	
+	public List<Recipe> readVeganAndGlutenFreeRecipes(List<Recipe> recipes) throws IOException {
+		 return null;
+	}
+	
+	
 }

@@ -17,9 +17,10 @@ public class RecipeConroller {
 	private FileService fileServices;
 
 	List<Recipe> recipes = new ArrayList<Recipe>();
-	
+
 	@GetMapping("/all-recipes")
 	public List<Recipe> displayAllRecipes() throws IOException {
+		
 		return fileServices.readAllRecipes(recipes);
 	}
 
@@ -28,15 +29,16 @@ public class RecipeConroller {
 		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
 		return fileServices.readGlutenFreeRecipes(readAllRecipes);
 	}
-
 	@GetMapping("/vegan")
-	public List<Recipe> displayVeganRecipes() {
-		return null;
+	public List<Recipe> displayVeganRecipes() throws IOException {
+		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
+		return fileServices.readVeganRecipes(readAllRecipes);
 	}
 
 	@GetMapping("/vegetarian")
-	public List<Recipe> displayVegetarianRecipes() {
-		return null;
+	public List<Recipe> displayVegetarianRecipes() throws IOException {
+		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
+		return fileServices.readVegetarianRecipes(readAllRecipes);
 	}
 
 	@GetMapping("/vegan-and-gluten-free")
