@@ -17,32 +17,36 @@ public class RecipeConroller {
 	private FileService fileServices;
 
 	List<Recipe> recipes = new ArrayList<Recipe>();
+	List<Recipe> displayRecipeList = new ArrayList<Recipe>();
 
 	@GetMapping("/all-recipes")
 	public List<Recipe> displayAllRecipes() throws IOException {
-		
+
 		return fileServices.readAllRecipes(recipes);
 	}
 
 	@GetMapping("/gluten-free")
 	public List<Recipe> displayGlutenFreeRecipes() throws IOException {
-		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
-		return fileServices.readGlutenFreeRecipes(readAllRecipes);
+
+		displayRecipeList = fileServices.readAllRecipes(recipes);
+		return fileServices.readGlutenFreeRecipes(displayRecipeList);
 	}
+
 	@GetMapping("/vegan")
 	public List<Recipe> displayVeganRecipes() throws IOException {
-		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
-		return fileServices.readVeganRecipes(readAllRecipes);
+		displayRecipeList = fileServices.readAllRecipes(recipes);
+		return fileServices.readVeganRecipes(displayRecipeList);
 	}
 
 	@GetMapping("/vegetarian")
 	public List<Recipe> displayVegetarianRecipes() throws IOException {
-		List<Recipe> readAllRecipes = fileServices.readAllRecipes(recipes);
-		return fileServices.readVegetarianRecipes(readAllRecipes);
+		displayRecipeList = fileServices.readAllRecipes(recipes);
+		return fileServices.readVegetarianRecipes(displayRecipeList);
 	}
 
 	@GetMapping("/vegan-and-gluten-free")
-	public List<Recipe> displayVeganAndGlutenFreeRecipes() {
-		return null;
+	public List<Recipe> displayVeganAndGlutenFreeRecipes() throws IOException {
+		displayRecipeList = fileServices.readAllRecipes(recipes);
+		return fileServices.readVeganAndGlutenFreeRecipes(displayRecipeList);
 	}
 }
