@@ -15,7 +15,7 @@ public class Recipe {
 	private String title;
 	private Boolean vegan;
 	private Boolean vegetarian;
-
+	
 	public Recipe(String cookingMinutes, String dairyFree, String glutenFree, String instructions,
 			String preparationMinutes, String privePerServing, String readyInMinutes, String servings,
 			String spoonacularScore, String title, String vegan, String vegetarian) {
