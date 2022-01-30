@@ -3,15 +3,11 @@ package com.coderscampus.apachecommons.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.csv.QuoteMode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coderscampus.apachecommons.domain.Recipe;
@@ -35,7 +31,7 @@ public class FileService {
 
 	public List<Recipe> readGlutenFreeRecipes(List<Recipe> recipes, List<Recipe> glutenFreeRecipes) throws IOException {
 
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : readAllRecipes(recipes)) {
 			if (recipe.getGlutenFree().equals(true)) {
 				glutenFreeRecipes.add(recipe);
 			}
@@ -45,7 +41,7 @@ public class FileService {
 	}
 
 	public List<Recipe> readVeganRecipes(List<Recipe> recipes, List<Recipe> veganRecipes) throws IOException {
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : readAllRecipes(recipes)) {
 			if (recipe.getVegan().equals(true)) {
 				veganRecipes.add(recipe);
 			}
@@ -54,6 +50,7 @@ public class FileService {
 	}
 
 	public List<Recipe> readVegetarianRecipes(List<Recipe> recipes, List<Recipe> vegetarianRecipes) throws IOException {
+
 		for (Recipe recipe : recipes) {
 			if (recipe.getVegetarian().equals(true)) {
 				vegetarianRecipes.add(recipe);
@@ -62,9 +59,8 @@ public class FileService {
 		return vegetarianRecipes;
 	}
 
-	public List<Recipe> readVeganAndGlutenFreeRecipes(List<Recipe> recipes, List<Recipe> vegetarianAndGlutenFreeRecipes)
-			throws IOException {
-		for (Recipe recipe : recipes) {
+	public List<Recipe> readVeganAndGlutenFreeRecipes(List<Recipe> recipes,List<Recipe> vegetarianAndGlutenFreeRecipes) throws IOException {
+		for (Recipe recipe : readAllRecipes(recipes)) {
 			if (recipe.getVegan().equals(true) && recipe.getGlutenFree().equals(true)) {
 				vegetarianAndGlutenFreeRecipes.add(recipe);
 			}

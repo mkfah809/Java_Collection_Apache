@@ -15,35 +15,39 @@ import com.coderscampus.apachecommons.service.FileService;
 public class RecipeConroller {
 	@Autowired
 	private FileService fileServices;
-
 	List<Recipe> recipes = new ArrayList<Recipe>();
 
 	@GetMapping("/all-recipes")
 	public List<Recipe> displayAllRecipes() throws IOException {
+		recipes.clear();
 		return fileServices.readAllRecipes(recipes);
 	}
 
 	@GetMapping("/gluten-free")
 	public List<Recipe> displayGlutenFreeRecipes() throws IOException {
 		List<Recipe> glutenFree = new ArrayList<Recipe>();
-		return fileServices.readGlutenFreeRecipes(fileServices.readAllRecipes(recipes), glutenFree);
+		recipes.clear();
+		return fileServices.readGlutenFreeRecipes(recipes, glutenFree);
 	}
 
 	@GetMapping("/vegan")
 	public List<Recipe> displayVeganRecipes() throws IOException {
 		List<Recipe> vegan = new ArrayList<Recipe>();
-		return fileServices.readVeganRecipes(fileServices.readAllRecipes(recipes), vegan);
+		recipes.clear();
+		return fileServices.readVeganRecipes(recipes, vegan);
 	}
 
 	@GetMapping("/vegetarian")
 	public List<Recipe> displayVegetarianRecipes() throws IOException {
 		List<Recipe> vegetarian = new ArrayList<Recipe>();
-		return fileServices.readVegetarianRecipes(fileServices.readAllRecipes(recipes), vegetarian);
+		recipes.clear();
+		return fileServices.readVeganRecipes(recipes, vegetarian);
 	}
 
 	@GetMapping("/vegan-and-gluten-free")
 	public List<Recipe> displayVeganAndGlutenFreeRecipes() throws IOException {
 		List<Recipe> veggieAndGlutenFreeRecipes = new ArrayList<Recipe>();
-		return fileServices.readVeganAndGlutenFreeRecipes(fileServices.readAllRecipes(recipes), veggieAndGlutenFreeRecipes);
+		recipes.clear();
+		return fileServices.readVeganRecipes(recipes, veggieAndGlutenFreeRecipes);
 	}
 }
