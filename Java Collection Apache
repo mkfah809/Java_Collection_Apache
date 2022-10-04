@@ -1,0 +1,15 @@
+ingest a recipe.txt file and store this information in a Java Collection of your choice. You will need to use the Apache Commons CSV project to parse the text file. 
+When parsing the text file, you should store the data in the following POJO:
+
+create “endpoints” inside of a RestController that will filter this data:
+
+The “all-recipes” endpoint will not filter the data at all and should return the full Collection.
+
+The “gluten-free” endpoint will only return a subset of the full Collection where glutenFree is true
+
+The “vegan” endpoint will only return a subset of the full Collection where vegan is true
+
+The “vegan-and-gluten-free” endpoint will only return a subset of the full Collection where glutenFree is true and vegan is true
+
+The “vegetarian” endpoint will only return a subset of the full Collection where vegetarian is true
+ 
